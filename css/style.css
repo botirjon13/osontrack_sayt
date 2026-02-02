@@ -445,7 +445,7 @@ details p{
   letter-spacing:-.6px;
   line-height:1.06;
   font-size:42px;
-  background: linear-gradient(180deg, #ffffff, rgba(233,238,247,.84));
+  background: linear-gradient(180deg, #ffffff, rgba(233,238,247,84));
   -webkit-background-clip: text;
   background-clip:text;
   color: transparent;
