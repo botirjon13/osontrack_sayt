@@ -442,3 +442,140 @@ details p{
   35%{ transform: translateY(-2px); opacity: .92; }
   100%{ transform: translateY(0); opacity: 1; }
 }
+/* ===== Pricing polish + animations ===== */
+
+.pricing-top{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:18px;
+}
+
+.billing{
+  display:flex;
+  gap:8px;
+  padding:6px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.03);
+  border-radius: 16px;
+}
+
+.bill-btn{
+  cursor:pointer;
+  border:1px solid transparent;
+  background: transparent;
+  color: rgba(233,238,247,.9);
+  padding:10px 12px;
+  border-radius: 12px;
+  font-weight:800;
+  transition: .18s ease;
+}
+
+.bill-btn:hover{
+  transform: translateY(-1px);
+}
+
+.bill-btn.is-active{
+  background: rgba(53,208,127,.14);
+  border-color: rgba(53,208,127,.28);
+  color: #eafff5;
+}
+
+.save{
+  display:inline-flex;
+  margin-left:6px;
+  padding:3px 8px;
+  border-radius: 999px;
+  background: rgba(255,176,32,.12);
+  border: 1px solid rgba(255,176,32,.22);
+  color: rgba(255,210,140,.98);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.price{
+  position:relative;
+  overflow:hidden;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+
+.price:hover{
+  transform: translateY(-6px);
+  border-color: rgba(53,208,127,.26);
+  box-shadow: 0 26px 80px rgba(0,0,0,.62);
+}
+
+.price-head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.amount{
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+  margin: 12px 0 14px;
+}
+
+.amount .currency{
+  opacity:.8;
+  font-weight:900;
+  letter-spacing:-.3px;
+}
+
+.amount .num{
+  font-size:32px;
+  font-weight: 1000;
+  letter-spacing: -0.8px;
+  font-variant-numeric: tabular-nums;
+}
+
+.amount .per{
+  opacity:.75;
+  font-weight:800;
+}
+
+.highlight{
+  border-color: rgba(53,208,127,.35);
+  box-shadow: 0 30px 90px rgba(0,0,0,.68);
+}
+
+.shine{
+  pointer-events:none;
+  position:absolute;
+  inset:-30%;
+  background: radial-gradient(500px 280px at 30% 20%, rgba(53,208,127,.22), transparent 60%),
+              radial-gradient(520px 300px at 70% 80%, rgba(59,130,246,.16), transparent 62%);
+  filter: blur(14px);
+  opacity:.9;
+  transform: translateY(-6px);
+  animation: floatGlow 4.6s ease-in-out infinite;
+}
+
+@keyframes floatGlow{
+  0%,100%{ transform: translateY(-6px); opacity:.85; }
+  50%{ transform: translateY(4px); opacity:1; }
+}
+
+/* reveal on scroll */
+.reveal{
+  opacity:0;
+  transform: translateY(14px);
+}
+
+.reveal.is-in{
+  opacity:1;
+  transform: translateY(0);
+  transition: opacity .5s ease, transform .5s ease;
+}
+
+/* responsive tweak */
+@media (max-width: 940px){
+  .pricing-top{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+}
