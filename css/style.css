@@ -92,7 +92,7 @@ h2{font-size:28px}
   width: 100%;
   height: 100%;
   object-fit: contain;
-  padding: 10px; /* Rasmni ichkariga qarab suradi va o'rtada qoldiradi */
+  padding: 3px; /* Rasmni ichkariga qarab suradi va o'rtada qoldiradi */
 }
 
 .brand-name{
