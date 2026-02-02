@@ -245,3 +245,19 @@ document.querySelectorAll("#leadForm").forEach(form=>{
     btn.addEventListener("click", ()=> setBilling(btn.dataset.billing));
   });
 })();
+// ===== Global scroll reveal =====
+(function globalReveal(){
+  const nodes = Array.from(document.querySelectorAll(".reveal"));
+  if (!nodes.length) return;
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if (e.isIntersecting){
+        e.target.classList.add("is-in");
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  nodes.forEach(n=>io.observe(n));
+})();
