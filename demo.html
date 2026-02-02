@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Demo so‘rash — OsonTrack SRM</title>
-  <meta name="description" content="Demo so‘rang: ism familiya va telefon qoldiring. Xodimimiz bog‘lanib demo login/parol beradi va foydalanishni o‘rgatadi." />
+  <meta name="description" content="Demo so‘rang: F.I.Sh va telefon raqam qoldiring. Xodimimiz bog‘lanib demo login/parol beradi va o‘rgatadi." />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -32,48 +32,54 @@
   <div class="container split">
     <div class="reveal">
       <h1>Demo so‘rash</h1>
-      <p class="sub">
-        F.I.Sh va telefon raqamingizni qoldiring — xodimimiz ish vaqtida bog‘lanib,
-        demo uchun login/parol beradi va ishlatishni tez o‘rgatib beradi.
-      </p>
+      <p class="sub">Demo olish uchun F.I.Sh va telefon raqam qoldiring. Xodimimiz sizga bog‘lanadi.</p>
 
-      <div class="card reveal hover-lift">
-        <h2>Qanday ishlaydi?</h2>
+      <div class="card reveal">
+        <h3>Jarayon</h3>
         <ol class="steps">
-          <li>So‘rov qoldirasiz (ism + telefon).</li>
-          <li>Xodimimiz 15–60 daqiqada (ish vaqtida) bog‘lanadi.</li>
-          <li>Demo login/parolni beradi.</li>
-          <li>Sizga platformani tushuntirib, ishlatishni o‘rgatadi.</li>
+          <li>So‘rov yuborasiz</li>
+          <li>OsonTrack xodimi bog‘lanadi</li>
+          <li>Demo login/parol beriladi</li>
+          <li>Platforma bo‘yicha o‘rgatib beriladi</li>
         </ol>
-        <p class="muted tiny">Spam yo‘q. Ma’lumot faqat demo uchun ishlatiladi.</p>
+        <p class="muted">Ish vaqtida odatda 15–60 daqiqa. Spam yo‘q.</p>
       </div>
     </div>
 
-    <div class="card form-card reveal hover-lift">
-      <h2>So‘rov formasi</h2>
+    <div class="card form-card reveal">
+      <h2>Ma’lumot qoldiring</h2>
 
       <form id="leadForm" class="form">
         <label>Ism familiya
-          <input name="full_name" placeholder="Masalan: Ilhomjon Saidjahanov" required minlength="3"/>
+          <input name="full_name" required minlength="3" placeholder="Masalan: Ilhomjon Saidjahanov" />
         </label>
 
         <label>Telefon raqam
-          <input name="phone" placeholder="+998 90 123 45 67" required />
+          <input name="phone" required placeholder="+998 90 123 45 67" />
         </label>
 
-        <label>Izoh (ixtiyoriy)
-          <textarea name="note" placeholder="Masalan: 2 ta filial, ombor hisobini ham yuritamiz"></textarea>
+        <label>Qanday do‘kon?
+          <select name="business_type">
+            <option value="">Tanlang (ixtiyoriy)</option>
+            <option>Mini market</option>
+            <option>Oziq-ovqat do‘koni</option>
+            <option>Apteka</option>
+            <option>Ombor</option>
+            <option>Boshqa</option>
+          </select>
         </label>
 
-        <button class="btn btn-primary btn-raise" type="submit">Yuborish</button>
+        <label>Izoh
+          <textarea name="note" placeholder="Filial soni, ombor, kassalar, xodimlar..."></textarea>
+        </label>
+
+        <button class="btn btn-primary" type="submit">Demo so‘rov yuborish</button>
         <p class="muted" id="formMsg"></p>
-      </form>
 
-      <div class="tiny muted" style="margin-top:10px">
-        <span class="pill">✅ Bepul demo</span>
-        <span class="pill">✅ O‘rgatib beriladi</span>
-        <span class="pill">✅ Ma’lumotlar himoyalangan</span>
-      </div>
+        <div class="tiny muted">
+          Yuborish orqali siz <b>demo tashkil etish</b> uchun bog‘lanishga rozilik bildirasiz.
+        </div>
+      </form>
     </div>
   </div>
 </main>
