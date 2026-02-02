@@ -195,3 +195,39 @@ const $  = (sel, root=document) => root.querySelector(sel);
   updateTable();
   setInterval(updateTable, 3200);
 })();
+// ===== Pricing: monthly/yearly toggle =====
+(function pricingToggle(){
+  const wrap = document.querySelector(".billing");
+  if (!wrap) return;
+
+  const buttons = Array.from(wrap.querySelectorAll(".bill-btn"));
+  const nums = Array.from(document.querySelectorAll(".num[data-price-month][data-price-year]"));
+  if (!buttons.length || !nums.length) return;
+
+  const fmt = (n) => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
+  function setMode(mode){
+    // buttons UI
+    buttons.forEach(b=>{
+      const active = b.dataset.billing === mode;
+      b.classList.toggle("is-active", active);
+      b.setAttribute("aria-selected", active ? "true" : "false");
+    });
+
+    // prices
+    nums.forEach(el=>{
+      const v = mode === "yearly" ? el.dataset.priceYear : el.dataset.priceMonth;
+      el.textContent = fmt(Number(v || 0));
+      const per = el.closest(".amount")?.querySelector(".per");
+      if (per) per.textContent = mode === "yearly" ? "/ yil" : "/ oy";
+    });
+  }
+
+  // click handlers
+  buttons.forEach(b=>{
+    b.addEventListener("click", ()=> setMode(b.dataset.billing));
+  });
+
+  // default
+  setMode("monthly");
+})();
