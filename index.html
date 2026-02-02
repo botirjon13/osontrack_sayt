@@ -7,37 +7,56 @@
   <meta name="description" content="Do‘kon savdo, ombor, xarajat va foydani bitta platformada. Demo so‘rang — xodimimiz ulab beradi va o‘rgatadi." />
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
 <header class="nav">
   <div class="container nav-inner">
-   <a class="brand" href="index.html">
-  <span class="brand-mark">
-    <img src="assets/logo.png" alt="OsonTrack" />
-  </span>
-</a>
+    <a class="brand" href="index.html" aria-label="OsonTrack SRM">
+      <span class="brand-mark">
+        <img src="assets/logo.png" alt="OsonTrack" />
+      </span>
+      <span class="brand-name">OsonTrack SRM</span>
+    </a>
+
     <nav class="menu">
       <a href="index.html" class="active">Bosh sahifa</a>
       <a href="pricing.html">Tariflar</a>
       <a href="demo.html" class="btn btn-primary">Demo so‘rash</a>
     </nav>
+
     <button class="burger" aria-label="menu" data-burger>☰</button>
   </div>
 </header>
 
 <main>
-  <section class="hero">
+  <!-- HERO -->
+  <section class="hero hero-advanced">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-gridline"></div>
+      <div class="hero-orb orb-1"></div>
+      <div class="hero-orb orb-2"></div>
+      <div class="hero-orb orb-3"></div>
+    </div>
+
     <div class="container hero-grid">
-      <div>
-        <p class="badge">SRM platforma • Savdo • Ombor • Hisob-kitob</p>
-        <h1>Do‘kon boshqaruvini tartibga soling. Savdo, ombor va foyda — bitta joyda.</h1>
+      <div class="reveal">
+        <p class="badge badge-glow">SRM platforma • Savdo • Ombor • Hisob-kitob</p>
+
+        <h1 class="title-gradient">
+          Do‘kon boshqaruvini tartibga soling.
+          Savdo, ombor va foyda — bitta joyda.
+        </h1>
+
         <p class="sub">
           OsonTrack SRM do‘koningizdagi savdolar, mahsulot qoldig‘i, xarajatlar va hisobotlarni
           tez, aniq va qulay boshqarishga yordam beradi.
         </p>
+
         <div class="cta">
-          <a class="btn btn-primary" href="demo.html">Demo so‘rash</a>
-          <a class="btn btn-ghost" href="pricing.html">Tariflarni ko‘rish</a>
+          <a class="btn btn-primary btn-raise" href="demo.html">Demo so‘rash</a>
+          <a class="btn btn-ghost btn-raise" href="pricing.html">Tariflarni ko‘rish</a>
         </div>
+
         <div class="trust">
           <span>✅ Tez o‘rnatish</span>
           <span>✅ O‘rgatib beriladi</span>
@@ -45,70 +64,75 @@
         </div>
       </div>
 
-      <div class="card preview">
+      <div class="card preview preview-float reveal">
+        <div class="preview-shine" aria-hidden="true"></div>
+
         <div class="preview-top">
           <div class="dot"></div><div class="dot"></div><div class="dot"></div>
           <span>Dashboard preview</span>
+          <span class="muted tiny" style="margin-left:auto">Live demo</span>
         </div>
+
         <div class="preview-body">
           <div class="kpi">
-  <div class="kpi-box">
-    <small>Bugungi savdo</small>
-    <b data-kpi="sales" data-format="money" data-prefix="">0</b>
-  </div>
+            <div class="kpi-box">
+              <small>Bugungi savdo</small>
+              <b data-kpi="sales" data-format="money">0</b>
+            </div>
+            <div class="kpi-box">
+              <small>Foyda</small>
+              <b data-kpi="profit" data-format="money">0</b>
+            </div>
+            <div class="kpi-box">
+              <small>Ombor qoldiq</small>
+              <b data-kpi="stock" data-format="int">0</b>
+            </div>
+          </div>
 
-  <div class="kpi-box">
-    <small>Foyda</small>
-    <b data-kpi="profit" data-format="money" data-prefix="">0</b>
-  </div>
-
-  <div class="kpi-box">
-    <small>Ombor qoldiq</small>
-    <b data-kpi="stock" data-format="int">0</b>
-  </div>
-</div>
           <div class="table" id="previewTable">
-  <div class="row head">
-    <span>Mahsulot</span><span>Qoldiq</span><span>Sotildi</span>
-  </div>
+            <div class="row head">
+              <span>Mahsulot</span><span>Qoldiq</span><span>Sotildi</span>
+            </div>
+            <div class="row" data-row="0">
+              <span data-col="name">—</span>
+              <span data-col="stock">—</span>
+              <span data-col="sold">—</span>
+            </div>
+            <div class="row" data-row="1">
+              <span data-col="name">—</span>
+              <span data-col="stock">—</span>
+              <span data-col="sold">—</span>
+            </div>
+            <div class="row" data-row="2">
+              <span data-col="name">—</span>
+              <span data-col="stock">—</span>
+              <span data-col="sold">—</span>
+            </div>
+          </div>
 
-  <div class="row" data-row="0">
-    <span data-col="name">—</span>
-    <span data-col="stock">—</span>
-    <span data-col="sold">—</span>
-  </div>
-
-  <div class="row" data-row="1">
-    <span data-col="name">—</span>
-    <span data-col="stock">—</span>
-    <span data-col="sold">—</span>
-  </div>
-
-  <div class="row" data-row="2">
-    <span data-col="name">—</span>
-    <span data-col="stock">—</span>
-    <span data-col="sold">—</span>
-  </div>
-</div>
-          <p class="muted">*Bu ko‘rinish demo dizayn. Real panelingizda raqamlar avtomatik chiqadi.</p>
+          <p class="muted tiny">*Bu ko‘rinish demo dizayn. Real panelingizda raqamlar avtomatik chiqadi.</p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- FEATURES -->
   <section class="section">
     <div class="container">
-      <h2>Nima uchun OsonTrack SRM?</h2>
+      <h2 class="reveal">Nima uchun OsonTrack SRM?</h2>
+
       <div class="grid-3">
-        <div class="card">
+        <div class="card reveal hover-lift">
           <h3>Savdo nazorati</h3>
           <p>Har bir savdo yoziladi, cheklar, qaytim, mijozlar va to‘lov turlari nazoratda.</p>
         </div>
-        <div class="card">
+
+        <div class="card reveal hover-lift">
           <h3>Ombor qoldiq</h3>
           <p>Qoldiq real vaqtga yaqin yuritiladi, kamayayotgan mahsulotlar ko‘rinadi.</p>
         </div>
-        <div class="card">
+
+        <div class="card reveal hover-lift">
           <h3>Hisobot va foyda</h3>
           <p>Xarajatlar, tushum va foyda. Qaysi mahsulot ko‘proq daromad berayotganini bilasiz.</p>
         </div>
@@ -116,9 +140,10 @@
     </div>
   </section>
 
+  <!-- DEMO HOW -->
   <section class="section section-alt">
     <div class="container split">
-      <div>
+      <div class="reveal">
         <h2>Demo qanday ishlaydi?</h2>
         <ol class="steps">
           <li>F.I.Sh va telefon raqamingizni qoldirasiz.</li>
@@ -129,38 +154,52 @@
         <p class="muted">Spam yo‘q. Ma’lumotlaringiz faqat demo tashkil etish uchun ishlatiladi.</p>
       </div>
 
-      <div class="card form-card">
+      <div class="card form-card reveal hover-lift">
         <h3>Demo so‘rash</h3>
+
         <form id="leadForm" class="form">
           <label>Ism familiya
             <input name="full_name" placeholder="Masalan: Ilhomjon Saidjahanov" required minlength="3"/>
           </label>
+
           <label>Telefon raqam
             <input name="phone" placeholder="+998 90 123 45 67" required />
           </label>
+
           <label>Izoh (ixtiyoriy)
             <textarea name="note" placeholder="Masalan: 2 ta filial, ombor hisobini ham yuritamiz"></textarea>
           </label>
-          <button class="btn btn-primary" type="submit">Yuborish</button>
+
+          <button class="btn btn-primary btn-raise" type="submit">Yuborish</button>
           <p class="muted" id="formMsg"></p>
         </form>
+
+        <div class="tiny muted">
+          <span class="pill">✅ 15–60 daqiqa</span>
+          <span class="pill">✅ Bepul demo</span>
+          <span class="pill">✅ O‘rgatib beriladi</span>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- FAQ -->
   <section class="section">
     <div class="container">
-      <h2>Ko‘p beriladigan savollar</h2>
+      <h2 class="reveal">Ko‘p beriladigan savollar</h2>
+
       <div class="faq">
-        <details class="card">
+        <details class="card reveal hover-lift">
           <summary>Demo bepulmi?</summary>
           <p>Ha. Siz so‘rov qoldirasiz, xodim demo login/parol beradi va foydalanishni tushuntiradi.</p>
         </details>
-        <details class="card">
+
+        <details class="card reveal hover-lift">
           <summary>Telefon raqamim qayerga ketadi?</summary>
           <p>Faqat siz bilan bog‘lanib demo berish va o‘rgatish uchun ishlatiladi. Spam qilinmaydi.</p>
         </details>
-        <details class="card">
+
+        <details class="card reveal hover-lift">
           <summary>Qancha vaqtda ulanasizlar?</summary>
           <p>Ish vaqtida odatda 15–60 daqiqada bog‘laniladi. Band bo‘lsa, navbat bilan.</p>
         </details>
