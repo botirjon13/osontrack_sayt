@@ -80,18 +80,14 @@ h2{font-size:28px}
 }
 
 .brand-mark{
-  width: 48px;   /* biroz kattaroq — ideal */
-  height: 48px;
+  width: 80px;
+  height: 80px;
   display:grid;
   place-items:center;
-  background:none;
-  border:none;
-  box-shadow:none;
 }
-
 .brand-mark img{
-  width: 100%;
-  height: 100%;
+  width:100%;
+  height:100%;
   object-fit: contain;
 }
 
@@ -444,11 +440,21 @@ details p{
 
 /* Kinetic title (word-by-word) */
 .title{
-  color: #fff; /* fallback */
+  margin:0 0 12px;
+  letter-spacing:-.6px;
+  line-height:1.06;
+  font-size:42px;
+
+  /* Fallback: har doim ko‘rinsin */
+  color:#fff;
+
+  /* Gradient text */
   background: linear-gradient(180deg, #ffffff 0%, rgba(233,238,247,.72) 100%);
   -webkit-background-clip:text;
   background-clip:text;
-  -webkit-text-fill-color: transparent; /* safari/chrome uchun */
+
+  /* MUHIM: Chrome/Safari’da yo‘qolishni to‘xtatadi */
+  -webkit-text-fill-color: transparent;
 }
 
 @media (max-width: 940px){
@@ -462,6 +468,7 @@ details p{
   filter: blur(4px);
   animation: wordIn .62s cubic-bezier(.2,.8,.2,1) forwards;
   animation-delay: var(--d, 0ms);
+  will-change: transform, opacity, filter;
 }
 
 @keyframes wordIn{
