@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>OsonTrack SRM — Do‘kon savdo/ombor/hisob-kitob platformasi</title>
+  <meta name="description" content="Do‘kon savdo, ombor, xarajat va foydani bitta platformada. Demo so‘rang — xodimimiz ulab beradi va o‘rgatadi." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<header class="nav">
+  <div class="container nav-inner">
+   <a class="brand" href="index.html">
+  <span class="brand-mark">
+    <img src="assets/logo.png" alt="OsonTrack" />
+  </span>
+</a>
+    <nav class="menu">
+      <a href="index.html" class="active">Bosh sahifa</a>
+      <a href="pricing.html">Tariflar</a>
+      <a href="demo.html" class="btn btn-primary">Demo so‘rash</a>
+    </nav>
+    <button class="burger" aria-label="menu" data-burger>☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="badge">SRM platforma • Savdo • Ombor • Hisob-kitob</p>
+        <h1>Do‘kon boshqaruvini tartibga soling. Savdo, ombor va foyda — bitta joyda.</h1>
+        <p class="sub">
+          OsonTrack SRM do‘koningizdagi savdolar, mahsulot qoldig‘i, xarajatlar va hisobotlarni
+          tez, aniq va qulay boshqarishga yordam beradi.
+        </p>
+        <div class="cta">
+          <a class="btn btn-primary" href="demo.html">Demo so‘rash</a>
+          <a class="btn btn-ghost" href="pricing.html">Tariflarni ko‘rish</a>
+        </div>
+        <div class="trust">
+          <span>✅ Tez o‘rnatish</span>
+          <span>✅ O‘rgatib beriladi</span>
+          <span>✅ Ma’lumotlar himoyalangan</span>
+        </div>
+      </div>
+
+      <div class="card preview">
+        <div class="preview-top">
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          <span>Dashboard preview</span>
+        </div>
+        <div class="preview-body">
+          <div class="kpi">
+  <div class="kpi-box">
+    <small>Bugungi savdo</small>
+    <b data-kpi="sales" data-format="money" data-prefix="">0</b>
+  </div>
+
+  <div class="kpi-box">
+    <small>Foyda</small>
+    <b data-kpi="profit" data-format="money" data-prefix="">0</b>
+  </div>
+
+  <div class="kpi-box">
+    <small>Ombor qoldiq</small>
+    <b data-kpi="stock" data-format="int">0</b>
+  </div>
+</div>
+          <div class="table" id="previewTable">
+  <div class="row head">
+    <span>Mahsulot</span><span>Qoldiq</span><span>Sotildi</span>
+  </div>
+
+  <div class="row" data-row="0">
+    <span data-col="name">—</span>
+    <span data-col="stock">—</span>
+    <span data-col="sold">—</span>
+  </div>
+
+  <div class="row" data-row="1">
+    <span data-col="name">—</span>
+    <span data-col="stock">—</span>
+    <span data-col="sold">—</span>
+  </div>
+
+  <div class="row" data-row="2">
+    <span data-col="name">—</span>
+    <span data-col="stock">—</span>
+    <span data-col="sold">—</span>
+  </div>
+</div>
+          <p class="muted">*Bu ko‘rinish demo dizayn. Real panelingizda raqamlar avtomatik chiqadi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Nima uchun OsonTrack SRM?</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Savdo nazorati</h3>
+          <p>Har bir savdo yoziladi, cheklar, qaytim, mijozlar va to‘lov turlari nazoratda.</p>
+        </div>
+        <div class="card">
+          <h3>Ombor qoldiq</h3>
+          <p>Qoldiq real vaqtga yaqin yuritiladi, kamayayotgan mahsulotlar ko‘rinadi.</p>
+        </div>
+        <div class="card">
+          <h3>Hisobot va foyda</h3>
+          <p>Xarajatlar, tushum va foyda. Qaysi mahsulot ko‘proq daromad berayotganini bilasiz.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container split">
+      <div>
+        <h2>Demo qanday ishlaydi?</h2>
+        <ol class="steps">
+          <li>F.I.Sh va telefon raqamingizni qoldirasiz.</li>
+          <li>OsonTrack xodimi ish vaqtida bog‘lanadi.</li>
+          <li>Sizga demo uchun login/parol beradi.</li>
+          <li>Platformadan foydalanishni tezkor o‘rgatib beradi.</li>
+        </ol>
+        <p class="muted">Spam yo‘q. Ma’lumotlaringiz faqat demo tashkil etish uchun ishlatiladi.</p>
+      </div>
+
+      <div class="card form-card">
+        <h3>Demo so‘rash</h3>
+        <form id="leadForm" class="form">
+          <label>Ism familiya
+            <input name="full_name" placeholder="Masalan: Ilhomjon Saidjahanov" required minlength="3"/>
+          </label>
+          <label>Telefon raqam
+            <input name="phone" placeholder="+998 90 123 45 67" required />
+          </label>
+          <label>Izoh (ixtiyoriy)
+            <textarea name="note" placeholder="Masalan: 2 ta filial, ombor hisobini ham yuritamiz"></textarea>
+          </label>
+          <button class="btn btn-primary" type="submit">Yuborish</button>
+          <p class="muted" id="formMsg"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Ko‘p beriladigan savollar</h2>
+      <div class="faq">
+        <details class="card">
+          <summary>Demo bepulmi?</summary>
+          <p>Ha. Siz so‘rov qoldirasiz, xodim demo login/parol beradi va foydalanishni tushuntiradi.</p>
+        </details>
+        <details class="card">
+          <summary>Telefon raqamim qayerga ketadi?</summary>
+          <p>Faqat siz bilan bog‘lanib demo berish va o‘rgatish uchun ishlatiladi. Spam qilinmaydi.</p>
+        </details>
+        <details class="card">
+          <summary>Qancha vaqtda ulanasizlar?</summary>
+          <p>Ish vaqtida odatda 15–60 daqiqada bog‘laniladi. Band bo‘lsa, navbat bilan.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div>
+      <b>OsonTrack SRM</b>
+      <p class="muted">Savdo • Ombor • Hisob-kitob</p>
+    </div>
+    <div class="footer-links">
+      <a href="pricing.html">Tariflar</a>
+      <a href="demo.html">Demo so‘rash</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>
