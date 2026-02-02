@@ -1,72 +1,89 @@
-const API_BASE = window.API_BASE || "http://127.0.0.1:8000";
+// ===== Helpers =====
+const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+const $  = (sel, root=document) => root.querySelector(sel);
 
-function normalizePhone(p){
-  return (p || "").replace(/[^\d+]/g, "").trim();
-}
+(function initBurger(){
+  const burger = $("[data-burger]");
+  const menu = $("[data-menu]");
+  if (!burger || !menu) return;
 
-function setMsg(el, text, ok=false){
-  if(!el) return;
-  el.textContent = text;
-  el.style.color = ok ? "rgba(53,208,127,.95)" : "rgba(255,180,32,.95)";
-}
-
-document.querySelectorAll("[data-burger]").forEach(btn=>{
-  btn.addEventListener("click", ()=>{
-    const menu = document.querySelector(".menu");
-    if(menu) menu.classList.toggle("open");
+  burger.addEventListener("click", ()=>{
+    menu.classList.toggle("open");
   });
-});
+})();
 
-document.querySelectorAll("#leadForm").forEach(form=>{
-  form.addEventListener("submit", async (e)=>{
-    e.preventDefault();
-    const msg = document.getElementById("formMsg");
+// ===== Kinetic title: word-by-word wrapping =====
+(function kineticTitle(){
+  const el = $("[data-ktitle]");
+  if (!el) return;
 
-    const fd = new FormData(form);
-    const payload = {
-      full_name: (fd.get("full_name") || "").toString().trim(),
-      phone: normalizePhone(fd.get("phone")),
-      note: (fd.get("note") || "").toString().trim(),
-      business_type: (fd.get("business_type") || "").toString().trim(),
-      source_page: location.pathname
-    };
+  // If user prefers reduced motion: don't wrap
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    if(payload.full_name.length < 3) return setMsg(msg, "Ism familiya kamida 3 ta belgi bo‘lsin.");
-    if(payload.phone.length < 7) return setMsg(msg, "Telefon raqamni to‘g‘ri kiriting.");
+  const text = el.textContent.trim().replace(/\s+/g, " ");
+  const words = text.split(" ");
 
-    setMsg(msg, "Yuborilmoqda...");
+  el.textContent = "";
+  const frag = document.createDocumentFragment();
 
-    try{
-      const r = await fetch(`${API_BASE}/api/leads`, {
-        method: "POST",
-        headers: {"Content-Type":"application/json"},
-        body: JSON.stringify(payload)
-      });
+  words.forEach((w, i)=>{
+    const span = document.createElement("span");
+    span.className = "kword";
+    span.style.setProperty("--d", `${140 + i * 42}ms`);
+    span.textContent = w;
+    frag.appendChild(span);
+    frag.appendChild(document.createTextNode(" "));
+  });
 
-      if(!r.ok){
-        const t = await r.text();
-        throw new Error(t || "Server xatosi");
+  el.appendChild(frag);
+})();
+
+// ===== Scroll reveal =====
+(function globalReveal(){
+  const nodes = $$(".reveal");
+  if (!nodes.length) return;
+
+  // reduced motion -> show all
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+    nodes.forEach(n=>n.classList.add("is-in"));
+    return;
+  }
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if (e.isIntersecting){
+        e.target.classList.add("is-in");
+        io.unobserve(e.target);
       }
+    });
+  }, { threshold: 0.12 });
 
-      form.reset();
-      setMsg(msg, "So‘rovingiz qabul qilindi. Tez orada xodimimiz bog‘lanadi ✅", true);
-    }catch(err){
-      setMsg(msg, "Yuborib bo‘lmadi. Iltimos, birozdan so‘ng urinib ko‘ring yoki admin bilan bog‘laning.");
-      console.error(err);
-    }
+  nodes.forEach(n=>io.observe(n));
+})();
+
+// ===== Demo form: placeholder submit (replace with API later) =====
+(function leadForm(){
+  const form = $("#leadForm");
+  const msg = $("#formMsg");
+  if (!form || !msg) return;
+
+  form.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    msg.textContent = "✅ So‘rov qabul qilindi. Xodimimiz tez orada bog‘lanadi.";
+    msg.style.color = "rgba(231,255,244,.95)";
+    form.reset();
   });
-});
-// ===== Dashboard preview KPI animation =====
+})();
+
+// ===== KPI animation =====
 (function initDashboardPreviewKpis(){
-  const nodes = Array.from(document.querySelectorAll("[data-kpi]"));
+  const nodes = $$("[data-kpi]");
   if (!nodes.length) return;
 
   const fmtMoney = (n) => {
-    // 1234567 -> 1 234 567 so'm
     const s = Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    return s + " so'm";
+    return s + " so‘m";
   };
-
   const fmtInt = (n) => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 
   function formatValue(node, val){
@@ -82,15 +99,13 @@ document.querySelectorAll("#leadForm").forEach(form=>{
 
     const tick = (t)=>{
       const p = Math.min(1, (t - start) / duration);
-      // easeOutCubic
-      const eased = 1 - Math.pow(1 - p, 3);
+      const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
       const cur = from + (target - from) * eased;
       node.textContent = formatValue(node, cur);
 
       if (p < 1) requestAnimationFrame(tick);
       else {
         node.classList.remove("up");
-        // reflow for animation re-trigger
         void node.offsetWidth;
         node.classList.add("up");
       }
@@ -98,31 +113,26 @@ document.querySelectorAll("#leadForm").forEach(form=>{
     requestAnimationFrame(tick);
   }
 
-  // Realistik diapazonlar (xohlasangiz o'zgartiramiz)
   const ranges = {
-    sales:  [ 1200000,  9800000],   // so'm
-    profit: [  180000,  1900000],   // so'm
-    stock:  [      65,      980],   // dona
+    sales:  [ 1200000,  9800000],
+    profit: [  180000,  1900000],
+    stock:  [      65,      980],
   };
 
   function nextTarget(key, prev){
     const [min, max] = ranges[key] || [0, 100];
-    // biroz tebranish bo'lsin: oldingi qiymatga yaqinroq
     const wiggle = (max - min) * 0.12;
     const base = (prev && !Number.isNaN(prev)) ? prev : (min + (max-min)*0.4);
     const raw = base + (Math.random()*2 - 1) * wiggle;
     return Math.max(min, Math.min(max, raw));
   }
 
-  // initial values
   nodes.forEach(n=>{
     const key = n.dataset.kpi;
     const initial = nextTarget(key, null);
     animateTo(n, initial, 850);
   });
 
-  // periodic updates
-  const intervalMs = 2600; // har 2.6s o'zgaradi
   setInterval(()=>{
     nodes.forEach(n=>{
       const key = n.dataset.kpi;
@@ -130,14 +140,15 @@ document.querySelectorAll("#leadForm").forEach(form=>{
       const target = nextTarget(key, prev);
       animateTo(n, target, 900);
     });
-  }, intervalMs);
+  }, 2600);
 })();
-// ===== Dashboard preview products table (universal names) =====
+
+// ===== Products table (universal names) =====
 (function initPreviewProducts(){
   const table = document.getElementById("previewTable");
   if (!table) return;
 
-  const rows = Array.from(table.querySelectorAll(".row[data-row]"));
+  const rows = $$(".row[data-row]", table);
   if (!rows.length) return;
 
   const catalog = [
@@ -168,96 +179,19 @@ document.querySelectorAll("#leadForm").forEach(form=>{
       const stockEl = row.querySelector('[data-col="stock"]');
       const soldEl  = row.querySelector('[data-col="sold"]');
 
-      const stock = Math.floor(20 + Math.random()*980);   // qoldiq
-      const sold  = Math.floor(1 + Math.random()*120);    // sotildi
+      const stock = Math.floor(20 + Math.random()*980);
+      const sold  = Math.floor(1 + Math.random()*120);
 
       if (nameEl)  nameEl.textContent  = names[idx] || "Mahsulot";
       if (stockEl) stockEl.textContent = fmtInt(stock);
       if (soldEl)  soldEl.textContent  = fmtInt(sold);
 
-      // kichik highlight animatsiya (ixtiyoriy)
       row.style.transition = "background .25s ease";
       row.style.background = "rgba(53,208,127,.06)";
       setTimeout(()=>{ row.style.background = ""; }, 250);
     });
   }
 
-  updateTable();              // birinchi marta to'ldirish
-  setInterval(updateTable, 3200); // har 3.2s o'zgaradi
-})();
-// ===== Pricing: monthly/yearly toggle + scroll reveal =====
-(function pricingEnhance(){
-  // Reveal animation
-  const revealNodes = Array.from(document.querySelectorAll(".reveal"));
-  if (revealNodes.length){
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){
-          e.target.classList.add("is-in");
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    revealNodes.forEach(n=>io.observe(n));
-  }
-
-  // Billing toggle
-  const buttons = Array.from(document.querySelectorAll("[data-billing]"));
-  const priceNodes = Array.from(document.querySelectorAll("[data-price-month]"));
-  if (!buttons.length || !priceNodes.length) return;
-
-  const fmtUZS = (n) => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-
-  function setBilling(mode){
-    buttons.forEach(b=>b.classList.toggle("is-active", b.dataset.billing === mode));
-
-    priceNodes.forEach(node=>{
-      const per = node.parentElement?.querySelector(".per");
-      const monthly = Number(node.dataset.priceMonth || "0");
-      const yearly  = Number(node.dataset.priceYear  || "0");
-
-      // mode=yearly -> "so'm / yil" ko'rsatamiz va annual qiymatni chiqaramiz
-      const target = (mode === "yearly") ? yearly : monthly;
-
-      // kichik count-up anim
-      const from = Number(node.dataset.value || node.textContent.replace(/\s/g,"") || "0");
-      const start = performance.now();
-      const dur = 650;
-      node.dataset.value = String(target);
-
-      const tick = (t)=>{
-        const p = Math.min(1, (t - start) / dur);
-        const eased = 1 - Math.pow(1 - p, 3);
-        const cur = from + (target - from) * eased;
-        node.textContent = fmtUZS(cur);
-        if (p < 1) requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-
-      if (per) per.textContent = (mode === "yearly") ? "/ yil" : "/ oy";
-    });
-  }
-
-  // default monthly
-  setBilling("monthly");
-
-  buttons.forEach(btn=>{
-    btn.addEventListener("click", ()=> setBilling(btn.dataset.billing));
-  });
-})();
-// ===== Global scroll reveal =====
-(function globalReveal(){
-  const nodes = Array.from(document.querySelectorAll(".reveal"));
-  if (!nodes.length) return;
-
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if (e.isIntersecting){
-        e.target.classList.add("is-in");
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-
-  nodes.forEach(n=>io.observe(n));
+  updateTable();
+  setInterval(updateTable, 3200);
 })();
