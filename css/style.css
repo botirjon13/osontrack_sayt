@@ -556,3 +556,21 @@ details p{
   .kword{ animation: none !important; opacity:1; transform:none; filter:none; }
   .reveal{ opacity:1; transform:none; }
 }
+.pricing .price .amount{
+  font-size:20px;
+  font-weight:900;
+  margin:10px 0 12px;
+}
+.list{
+  list-style:none;
+  padding:0;
+  margin:0;
+  color:rgba(233,238,247,.9);
+}
+.list li{
+  padding:7px 0;
+  border-top:1px dashed rgba(255,255,255,.12);
+}
+.list li:first-child{border-top:none}
+.highlight{border-color: rgba(53,208,127,.35)}
+.callout{margin-top:18px; display:flex; flex-direction:column; gap:8px}
