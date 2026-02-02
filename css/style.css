@@ -71,20 +71,18 @@ h2{font-size:28px}
   height:64px
 }
 
-/* ====== BRAND / LOGO ====== */
+/* ======  / LOGO ====== */
 .brand {
   display: flex;
   align-items: center;
   gap: 12px;
   font-weight: 900;
-  margin-top: 8px; /* Tepadan masofa ochadi */
-  /* Agar butunlay o'rtaga olmoqchi bo'lsangiz: */
   justify-content: center; 
 }
 
 .brand-mark{
-  width: 145px;
-  height: 145px;
+  width: 150px;
+  height: 150px;
   display:grid;
   place-items:center;
 }
