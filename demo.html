@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Demo so‘rash — OsonTrack SRM</title>
+  <meta name="description" content="Demo so‘rang: F.I.Sh va telefon raqam qoldiring. Xodimimiz bog‘lanib demo login/parol beradi va o‘rgatadi." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<header class="nav">
+  <div class="container nav-inner">
+     <a class="brand" href="index.html">
+  <span class="brand-mark">
+    <img src="assets/logo.png" alt="OsonTrack" />
+  </span>
+</a>
+    <nav class="menu">
+      <a href="index.html">Bosh sahifa</a>
+      <a href="pricing.html">Tariflar</a>
+      <a href="demo.html" class="active">Demo</a>
+    </nav>
+    <button class="burger" aria-label="menu" data-burger>☰</button>
+  </div>
+</header>
+
+<main class="section">
+  <div class="container split">
+    <div>
+      <h1>Demo so‘rash</h1>
+      <p class="sub">Demo olish uchun F.I.Sh va telefon raqam qoldiring. Xodimimiz sizga bog‘lanadi.</p>
+
+      <div class="card">
+        <h3>Jarayon</h3>
+        <ol class="steps">
+          <li>So‘rov yuborasiz</li>
+          <li>OsonTrack xodimi bog‘lanadi</li>
+          <li>Demo login/parol beriladi</li>
+          <li>Platforma bo‘yicha o‘rgatib beriladi</li>
+        </ol>
+        <p class="muted">Ish vaqtida odatda 15–60 daqiqa. Spam yo‘q.</p>
+      </div>
+    </div>
+
+    <div class="card form-card">
+      <h2>Ma’lumot qoldiring</h2>
+      <form id="leadForm" class="form">
+        <label>Ism familiya
+          <input name="full_name" required minlength="3" />
+        </label>
+        <label>Telefon raqam
+          <input name="phone" required placeholder="+998..." />
+        </label>
+        <label>Qanday do‘kon?
+          <select name="business_type">
+            <option value="">Tanlang (ixtiyoriy)</option>
+            <option>Mini market</option>
+            <option>Oziq-ovqat do‘koni</option>
+            <option>Apteka</option>
+            <option>Ombor</option>
+            <option>Boshqa</option>
+          </select>
+        </label>
+        <label>Izoh
+          <textarea name="note" placeholder="Filial soni, ombor, kassalar, xodimlar..."></textarea>
+        </label>
+
+        <button class="btn btn-primary" type="submit">Demo so‘rov yuborish</button>
+        <p class="muted" id="formMsg"></p>
+
+        <div class="tiny">
+          Yuborish orqali siz <b>demo tashkil etish</b> uchun bog‘lanishga rozilik bildirasiz.
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div>
+      <b>OsonTrack SRM</b>
+      <p class="muted">Savdo • Ombor • Hisob-kitob</p>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Bosh sahifa</a>
+      <a href="pricing.html">Tariflar</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>
