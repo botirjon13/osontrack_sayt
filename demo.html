@@ -4,74 +4,76 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Demo so‘rash — OsonTrack SRM</title>
-  <meta name="description" content="Demo so‘rang: F.I.Sh va telefon raqam qoldiring. Xodimimiz bog‘lanib demo login/parol beradi va o‘rgatadi." />
+  <meta name="description" content="Demo so‘rang: ism familiya va telefon qoldiring. Xodimimiz bog‘lanib demo login/parol beradi va foydalanishni o‘rgatadi." />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+
 <header class="nav">
   <div class="container nav-inner">
-     <a class="brand" href="index.html">
-  <span class="brand-mark">
-    <img src="assets/logo.png" alt="OsonTrack" />
-  </span>
-</a>
-    <nav class="menu">
+    <a class="brand" href="index.html" aria-label="OsonTrack SRM">
+      <span class="brand-mark">
+        <img src="assets/logo.png" alt="OsonTrack" />
+      </span>
+      <span class="brand-name">OsonTrack SRM</span>
+    </a>
+
+    <nav class="menu" data-menu>
       <a href="index.html">Bosh sahifa</a>
       <a href="pricing.html">Tariflar</a>
-      <a href="demo.html" class="active">Demo</a>
+      <a href="demo.html" class="btn btn-primary">Demo so‘rash</a>
     </nav>
+
     <button class="burger" aria-label="menu" data-burger>☰</button>
   </div>
 </header>
 
 <main class="section">
   <div class="container split">
-    <div>
+    <div class="reveal">
       <h1>Demo so‘rash</h1>
-      <p class="sub">Demo olish uchun F.I.Sh va telefon raqam qoldiring. Xodimimiz sizga bog‘lanadi.</p>
+      <p class="sub">
+        F.I.Sh va telefon raqamingizni qoldiring — xodimimiz ish vaqtida bog‘lanib,
+        demo uchun login/parol beradi va ishlatishni tez o‘rgatib beradi.
+      </p>
 
-      <div class="card">
-        <h3>Jarayon</h3>
+      <div class="card reveal hover-lift">
+        <h2>Qanday ishlaydi?</h2>
         <ol class="steps">
-          <li>So‘rov yuborasiz</li>
-          <li>OsonTrack xodimi bog‘lanadi</li>
-          <li>Demo login/parol beriladi</li>
-          <li>Platforma bo‘yicha o‘rgatib beriladi</li>
+          <li>So‘rov qoldirasiz (ism + telefon).</li>
+          <li>Xodimimiz 15–60 daqiqada (ish vaqtida) bog‘lanadi.</li>
+          <li>Demo login/parolni beradi.</li>
+          <li>Sizga platformani tushuntirib, ishlatishni o‘rgatadi.</li>
         </ol>
-        <p class="muted">Ish vaqtida odatda 15–60 daqiqa. Spam yo‘q.</p>
+        <p class="muted tiny">Spam yo‘q. Ma’lumot faqat demo uchun ishlatiladi.</p>
       </div>
     </div>
 
-    <div class="card form-card">
-      <h2>Ma’lumot qoldiring</h2>
+    <div class="card form-card reveal hover-lift">
+      <h2>So‘rov formasi</h2>
+
       <form id="leadForm" class="form">
         <label>Ism familiya
-          <input name="full_name" required minlength="3" />
+          <input name="full_name" placeholder="Masalan: Ilhomjon Saidjahanov" required minlength="3"/>
         </label>
+
         <label>Telefon raqam
-          <input name="phone" required placeholder="+998..." />
-        </label>
-        <label>Qanday do‘kon?
-          <select name="business_type">
-            <option value="">Tanlang (ixtiyoriy)</option>
-            <option>Mini market</option>
-            <option>Oziq-ovqat do‘koni</option>
-            <option>Apteka</option>
-            <option>Ombor</option>
-            <option>Boshqa</option>
-          </select>
-        </label>
-        <label>Izoh
-          <textarea name="note" placeholder="Filial soni, ombor, kassalar, xodimlar..."></textarea>
+          <input name="phone" placeholder="+998 90 123 45 67" required />
         </label>
 
-        <button class="btn btn-primary" type="submit">Demo so‘rov yuborish</button>
+        <label>Izoh (ixtiyoriy)
+          <textarea name="note" placeholder="Masalan: 2 ta filial, ombor hisobini ham yuritamiz"></textarea>
+        </label>
+
+        <button class="btn btn-primary btn-raise" type="submit">Yuborish</button>
         <p class="muted" id="formMsg"></p>
-
-        <div class="tiny">
-          Yuborish orqali siz <b>demo tashkil etish</b> uchun bog‘lanishga rozilik bildirasiz.
-        </div>
       </form>
+
+      <div class="tiny muted" style="margin-top:10px">
+        <span class="pill">✅ Bepul demo</span>
+        <span class="pill">✅ O‘rgatib beriladi</span>
+        <span class="pill">✅ Ma’lumotlar himoyalangan</span>
+      </div>
     </div>
   </div>
 </main>
