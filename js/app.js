@@ -185,3 +185,63 @@ document.querySelectorAll("#leadForm").forEach(form=>{
   updateTable();              // birinchi marta to'ldirish
   setInterval(updateTable, 3200); // har 3.2s o'zgaradi
 })();
+// ===== Pricing: monthly/yearly toggle + scroll reveal =====
+(function pricingEnhance(){
+  // Reveal animation
+  const revealNodes = Array.from(document.querySelectorAll(".reveal"));
+  if (revealNodes.length){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add("is-in");
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealNodes.forEach(n=>io.observe(n));
+  }
+
+  // Billing toggle
+  const buttons = Array.from(document.querySelectorAll("[data-billing]"));
+  const priceNodes = Array.from(document.querySelectorAll("[data-price-month]"));
+  if (!buttons.length || !priceNodes.length) return;
+
+  const fmtUZS = (n) => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
+  function setBilling(mode){
+    buttons.forEach(b=>b.classList.toggle("is-active", b.dataset.billing === mode));
+
+    priceNodes.forEach(node=>{
+      const per = node.parentElement?.querySelector(".per");
+      const monthly = Number(node.dataset.priceMonth || "0");
+      const yearly  = Number(node.dataset.priceYear  || "0");
+
+      // mode=yearly -> "so'm / yil" ko'rsatamiz va annual qiymatni chiqaramiz
+      const target = (mode === "yearly") ? yearly : monthly;
+
+      // kichik count-up anim
+      const from = Number(node.dataset.value || node.textContent.replace(/\s/g,"") || "0");
+      const start = performance.now();
+      const dur = 650;
+      node.dataset.value = String(target);
+
+      const tick = (t)=>{
+        const p = Math.min(1, (t - start) / dur);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const cur = from + (target - from) * eased;
+        node.textContent = fmtUZS(cur);
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+
+      if (per) per.textContent = (mode === "yearly") ? "/ yil" : "/ oy";
+    });
+  }
+
+  // default monthly
+  setBilling("monthly");
+
+  buttons.forEach(btn=>{
+    btn.addEventListener("click", ()=> setBilling(btn.dataset.billing));
+  });
+})();
