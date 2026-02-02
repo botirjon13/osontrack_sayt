@@ -77,14 +77,14 @@ h2{font-size:28px}
   align-items: center;
   gap: 12px;
   font-weight: 900;
-  margin-top: 5px; /* Tepadan masofa ochadi */
+  margin-top: 8px; /* Tepadan masofa ochadi */
   /* Agar butunlay o'rtaga olmoqchi bo'lsangiz: */
   justify-content: center; 
 }
 
 .brand-mark{
-  width: 135px;
-  height: 135px;
+  width: 145px;
+  height: 145px;
   display:grid;
   place-items:center;
 }
